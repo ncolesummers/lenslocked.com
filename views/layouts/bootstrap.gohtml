@@ -1,0 +1,22 @@
+{{define "bootstrap"}}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Photo Gallery">
+    <meta name="author" content="Cole Summers">
+    <title>Lenslocked.com</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+    <main role="main" class="container-fluid">
+       {{template "yield" .}}
+    </main><!-- /.container -->
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>
+{{end}}
