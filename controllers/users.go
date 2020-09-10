@@ -3,8 +3,14 @@ package controllers
 import (
 	"../views"
 	"fmt"
+	"github.com/gorilla/schema"
 	"net/http"
 )
+
+type SignupForm struct {
+	Email string `schema:"email"`
+	Password string `schema:"password"`
+}
 
 // NewUsers is used to create a new Users controller.
 // This function will panic if the templates are not parsed correctly, and should only be used during initial setup.
@@ -34,7 +40,11 @@ func (u *Users) Create(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
 		panic(err)
 	}
-	fmt.Fprintln(w, r.PostFormValue("email"))
-	fmt.Fprintln(w, r.PostFormValue("password"))
-	fmt.Fprintln(w, "This is a temporary response.")
+
+	dec := schema.NewDecoder()
+	var form SignupForm
+	if err := dec.Decode(&form, r.PostForm); err != nil {
+		panic(err)
+	}
+	fmt.Fprintln(w, form)
 }
